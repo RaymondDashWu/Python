@@ -19,6 +19,13 @@ def tarjan(g):
     Complexity: strong_connect() is called at most once for each node and has a
     complexity of O(|E|) as it is DFS.
     Therefore this has complexity O(|V| + |E|) for a graph G = (V, E)
+    >>> n_vertices = 7
+    >>> source = [0, 0, 1, 2, 3, 3, 4, 4, 6]
+    >>> target = [1, 3, 2, 0, 1, 4, 5, 6, 5]
+    >>> edges = list(zip(source, target))
+    >>> g = create_graph(n_vertices, edges)
+    >>> [[5], [6], [4], [3, 2, 1, 0]] == tarjan(g)
+    True
     """
 
     n = len(g)
@@ -66,6 +73,18 @@ def tarjan(g):
 
 
 def create_graph(n, edges):
+    """
+    >>> create_graph(1, [(0,0)])
+    [[0]]
+    >>> create_graph(2, [(0,1), (1,0)])
+    [[1], [0]]
+    >>> n_vertices = 7
+    >>> source = [0, 0, 1, 2, 3, 3, 4, 4, 6]
+    >>> target = [1, 3, 2, 0, 1, 4, 5, 6, 5]
+    >>> edges = list(zip(source, target))
+    >>> create_graph(n_vertices, edges)
+    [[1, 3], [2], [0], [1, 4], [5, 6], [], [5]]
+    """
     g = [[] for _ in range(n)]
     for u, v in edges:
         g[u].append(v)
